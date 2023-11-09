@@ -1,4 +1,3 @@
-package structures;
 
 import static java.lang.reflect.Array.newInstance;
 
@@ -9,7 +8,7 @@ import java.util.Arrays;
  * and values of type V. Associative Arrays store key/value pairs
  * and permit you to look up values by key.
  *
- * @author Your Name Here
+ * @author John Miller
  * @author Samuel A. Rebelsky
  */
 public class AssociativeArray<K, V> {
@@ -97,6 +96,10 @@ public class AssociativeArray<K, V> {
   /**
    * Set the value associated with key to value. Future calls to
    * get(key) will return value.
+   * 
+   * @pre: key is a valid K, value is a valid V
+   * 
+   * @Post: returns nothing but updates the AssociativeArray with the updated pair
    */
   @SuppressWarnings({ "unchecked" })
   public void set(K key, V value) {
@@ -139,8 +142,19 @@ public class AssociativeArray<K, V> {
    * @throws KeyNotFoundException
    *                              when the key does not appear in the associative
    *                              array.
+   *                              will give an error message if the key is null,
+   *                              and if the key doesn't appear.
+   * 
+   * @pre: this is a valid AssociativeArray
+   * 
+   * @post: returns V value, or error message
    */
   public V get(K key) throws KeyNotFoundException {
+
+    if (key == null) {
+      throw new Error("the key is null, therefore it couldn't be stored");
+    }
+
     try {
       int i = this.find(key);
       return this.pairs[i].value;
@@ -151,8 +165,16 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine if key appears in the associative array.
+   * 
+   * @pre: this is a valid AssociativeArray
+   * 
+   * @Post: returns true is the Array has K key
+   * 
    */
   public boolean hasKey(K key) {
+    if (key == null) {
+      return false;// return false if the key is null
+    }
     for (int i = 0; i < this.size(); i++) {
       if (this.pairs[i] != null) {
         if (this.pairs[i].key.equals(key) == true) {
@@ -167,6 +189,11 @@ public class AssociativeArray<K, V> {
    * Remove the key/value pair associated with a key. Future calls
    * to get(key) will throw an exception. If the key does not appear
    * in the associative array, does nothing.
+   * 
+   * @pre: this is a valid AssociativeArray
+   * 
+   * @Post: removes the key, or throws an error message
+   * 
    */
   public void remove(K key) {
     try {
@@ -180,6 +207,10 @@ public class AssociativeArray<K, V> {
 
   /**
    * Determine how many values are in the associative array.
+   * 
+   * @pre: this is a valid associative array
+   * 
+   * @post: returns an integer representing how many values are in it.
    */
   public int size() {
     int sizeCount = 0;

@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.math.BigInteger;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestClassOrder;
-
-import structures.AssociativeArray;
-import structures.KeyNotFoundException;
 
 /**
  * Tests of the AssociativeArray class.
@@ -129,13 +125,28 @@ public class AssociativeArrayTests {
   }
 
   /*
-   * this is an edge case for removing a key from an empty array. this is supposed
-   * to fail
+   * this is an edge case for getting the size of an empty array. it should be
+   * zero
    */
   @Test
   public void johnMillerEdge01() {
     AssociativeArray<String, String> array = new AssociativeArray<String, String>();
-    array.remove("z");
+    assertEquals(array.size(), 0);
+  }
+
+  /*
+   * this is an edge case for setting a null value. it should return the null
+   * value at the key
+   */
+  @Test
+  public void johnMillerEdge02() {
+    AssociativeArray<BigInteger, String> array = new AssociativeArray<BigInteger, String>();
+    array.set(BigInteger.valueOf(8), null);// setting the 8,null pair
+    try {
+      assertEquals(null, array.get(BigInteger.valueOf(8)));// asserting we get null at 8
+    } catch (KeyNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
   // +-----------------------+---------------------------------------

@@ -8,9 +8,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import structures.AssociativeArray;
-import structures.KeyNotFoundException;
-
 public class AssociativeArrayTestsMain {
   /**
    * A test of cloning.

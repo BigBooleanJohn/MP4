@@ -1,6 +1,4 @@
 import java.io.PrintWriter;
-import structures.AssociativeArray;
-import structures.KeyNotFoundException;
 
 /**
  * An extension of the AssociativeArray class that reports each
