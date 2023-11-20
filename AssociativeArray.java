@@ -1,8 +1,6 @@
 
 import static java.lang.reflect.Array.newInstance;
 
-import java.util.Arrays;
-
 /**
  * A basic implementation of Associative Arrays with keys of type K
  * and values of type V. Associative Arrays store key/value pairs
@@ -101,7 +99,6 @@ public class AssociativeArray<K, V> {
    * 
    * @Post: returns nothing but updates the AssociativeArray with the updated pair
    */
-  @SuppressWarnings({ "unchecked" })
   public void set(K key, V value) {
     Boolean foundValue = false;
     int index = 0;
@@ -150,16 +147,11 @@ public class AssociativeArray<K, V> {
    * @post: returns V value, or error message
    */
   public V get(K key) throws KeyNotFoundException {
-
-    if (key == null) {
-      throw new Error("the key is null, therefore it couldn't be stored");
-    }
-
     try {
       int i = this.find(key);
       return this.pairs[i].value;
     } catch (KeyNotFoundException K) {
-      throw new Error("there is no value corresponding to this key in the associate array\n");
+      throw new KeyNotFoundException("there is no value corresponding to this key in the associate array\n");
     }
   } // get(K)
 
