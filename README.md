@@ -1,5 +1,5 @@
 # csc207-2023fa-associative-array-tests
-
+@Author: John Miller
 Tests for our AssociativeArray class (Mini-Project 4).
 
 Suggested strategy:
